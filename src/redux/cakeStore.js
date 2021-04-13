@@ -1,5 +1,13 @@
-import { createStore } from "redux";
+import { applyMiddleware, createStore } from "redux";
 
 import { cakeReducer } from "./cakeReducer";
 
-export const store = createStore(cakeReducer);
+import { logger } from "redux-logger";
+
+// const logger = createLogger();
+
+export const store = createStore(cakeReducer, applyMiddleware(logger));
+
+const unSubscribe = store.subscribe(() => {});
+
+unSubscribe();
